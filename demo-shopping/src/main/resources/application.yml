@@ -1,0 +1,5 @@
+
+apii:
+  jsonddholder:
+    domain: 'https://jsonplaceholder.typicode.com'
+    endpoint: '/users'

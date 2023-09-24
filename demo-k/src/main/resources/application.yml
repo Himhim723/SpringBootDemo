@@ -1,0 +1,13 @@
+
+apii:
+  jsong:
+    domain: 'jsonplaceholder.typicode.com'
+    endpoints:
+      user: '/users'
+      comments: '/comments'
+
+    domain2: 'ipapi.co'
+    endpoints2: 
+      e2: '/json'
+
+ 
