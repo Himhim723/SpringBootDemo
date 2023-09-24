@@ -29,4 +29,5 @@ public class UserWithPost {
   private String phone;
   @OneToMany(cascade = CascadeType.ALL)
   private List<Post> posts;
+  
 }

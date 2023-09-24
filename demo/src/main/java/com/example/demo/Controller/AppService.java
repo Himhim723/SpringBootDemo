@@ -24,7 +24,7 @@ public class AppService {
   public UserDto getUsers(){
     String url = "https://jsonplaceholder.typicode.com/users";
     User[] users = restTemplate.getForObject(url, User[].class);
-    return ObjectMapper.userToUserDto(users[0]);
+    return ObjectMapper.userToUserDto(users[1]);
   }
 
   public List<Post> getPost(){
