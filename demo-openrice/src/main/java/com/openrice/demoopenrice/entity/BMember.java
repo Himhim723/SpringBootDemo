@@ -26,10 +26,8 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class BMember implements Serializable{
-  @Id
-  private String username;
-  private String password;
+public class BMember extends Member{
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Shop> myShops;
 
 

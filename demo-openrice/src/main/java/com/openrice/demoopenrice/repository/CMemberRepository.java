@@ -1,9 +1,9 @@
-// package com.openrice.demoopenrice.repository;
+package com.openrice.demoopenrice.repository;
 
-// import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-// import com.openrice.demoopenrice.entity.CMember;
+import com.openrice.demoopenrice.entity.CMember;
 
-// public interface CMemberRepository extends JpaRepository<CMember,String>{
+public interface CMemberRepository extends JpaRepository<CMember,String>{
   
-// }
+}
