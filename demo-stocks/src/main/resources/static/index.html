@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple HTML Frontend</title>
+</head>
+<body>
+  <h1 id="message"></h1>
+  <h1 id ="go"></h1>
+  <script>
+    // Make an HTTP request to the backend API
+    fetch('/api/message')
+      .then(response => response.text())
+      .then(data => {
+        // Update the message element with the received data
+        const messageElement = document.getElementById('message');
+        messageElement.textContent = data;
+      })
+      .catch(error => console.log(error));
+  </script>
+
+  <script>
+    fetch('/api/go').then(response => response.text())
+                    .then(data =>{
+                      const messageElement =  document.getElementById('go');
+                      messageElement.textContent = data;
+                    });
+  </script>
+
+</body>
+</html>

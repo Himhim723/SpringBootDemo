@@ -1,14 +1,19 @@
 package com.stock.demostocks.config;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.CommandLinePropertySource;
 import org.springframework.stereotype.Component;
 
 import com.stock.demostocks.entity.Stock;
+import com.stock.demostocks.entity.StockPrice;
+import com.stock.demostocks.exception.FinnhubException;
+import com.stock.demostocks.model.Quote;
 import com.stock.demostocks.model.StockSymbol;
 import com.stock.demostocks.service.CompanyService;
 import com.stock.demostocks.service.DataService;
@@ -23,17 +28,13 @@ public class AppStartRunner implements CommandLineRunner{
 
 
   @Override
-  public void run(String... args) throws Exception {
-    //Before Server Start -> 
-    //Get CompanyProfile 2 and insert into database
-    List<StockSymbol> s = companyService.getSymbols();
-    for(int i=0;i<50;i++){
-      try{
-      Stock temp = dataService.saveFromObject(s.get(i).getSymbol());
-      dataService.saveStockPrice(s.get(i).getSymbol(),temp);
-      }catch(Exception e){
-        System.out.println("Symbol: "+s.get(i).getSymbol());
-      }
-    }
+  public void run(String... args) throws FinnhubException {
+    
+    //Programmer
+    //Carmeego 
+    //22000-25000
+    //mid of October
+    //手寫 Code Test 
+
   }
 }

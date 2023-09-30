@@ -14,7 +14,9 @@ spring.datasource:
 spring.jpa:
   show-sql: true
   properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
-  hibernate.ddl-auto: update #update
+  hibernate.ddl-auto: update #update create table if not exist
+                             #validate create table in database manually
+                             
 
 spring.sql.init: 
   mode: always

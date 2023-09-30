@@ -18,14 +18,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "BusinessMember")
+//@Table(name = "BusinessMember")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 public class BMember extends Member{
   @OneToMany(cascade = CascadeType.ALL)
   private List<Shop> myShops;

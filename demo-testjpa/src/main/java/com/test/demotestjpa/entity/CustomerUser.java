@@ -1,16 +1,14 @@
-package com.test.demotestjpa.model.entity;
+package com.test.demotestjpa.entity;
 
 import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Customer")
 @Getter
 @Setter
 public class CustomerUser extends User {
@@ -19,8 +17,9 @@ public class CustomerUser extends User {
     private String email;
     private String creditCardNumber;
     @ManyToMany
-    private List<Shop> favoriteShops;
-    @OneToMany
+    private List<Shop> myFavoriteShops;
+    @OneToMany(mappedBy = "customerUser")
     private List<Booking> bookings;
-    // getters and setters
+
+    // getters, setters
 }

@@ -1,19 +1,18 @@
-package com.test.demotestjpa.model.entity;
+package com.test.demotestjpa.entity;
 
 import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Business")
-@Getter
 @Setter
+@Getter
 public class BusinessUser extends User {
-    @OneToMany
+    @OneToMany(mappedBy = "owner")
     private List<Shop> shops;
-    // getters and setters
+
+    // getters, setters
 }

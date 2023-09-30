@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stock.demostocks.Repository.StockPriceRepository;
 import com.stock.demostocks.Repository.StockRepository;
 import com.stock.demostocks.entity.Stock;
@@ -95,8 +96,4 @@ public class DataServiceImp implements DataService{
                                            .build();
     return stockPriceRepository.save(stocks);
   }
-
-  
-
-  
 }

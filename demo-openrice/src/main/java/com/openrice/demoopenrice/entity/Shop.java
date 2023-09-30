@@ -12,6 +12,8 @@ import com.openrice.demoopenrice.model.Food;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -20,6 +22,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,8 +35,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Builder
 public class Shop implements Serializable{
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String name;
   @OneToMany(cascade = CascadeType.ALL)
   private List<Food> menu;
@@ -45,12 +50,7 @@ public class Shop implements Serializable{
   private List<Booking> bookings;
 
   // Can also use ManyToMany to complete the task along with JoinTable
-  @ManyToMany
-  @JoinTable(
-    name = "Liked_Shop",
-    joinColumns = @JoinColumn(name = "name"),
-    inverseJoinColumns = @JoinColumn(name = "username")
-)
+  @ManyToMany(cascade = CascadeType.ALL)
   @JsonIgnoreProperties(value = {"type","password","username","email","creditCard","myFavShops","myBookings"})
   private List<CMember> liked;
 
