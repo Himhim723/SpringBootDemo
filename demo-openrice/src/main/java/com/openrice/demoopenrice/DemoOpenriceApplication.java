@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoOpenriceApplication {
  
 	public static void main(String[] args) {
+		System.out.println("Server start");
 		SpringApplication.run(DemoOpenriceApplication.class, args);
 		
 	}

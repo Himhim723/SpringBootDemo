@@ -23,7 +23,7 @@ public class Member implements Serializable{
   @Id
   private String username;
   private String password;
-  private int types;
+  private int type;
 
   
 }

@@ -43,6 +43,7 @@ public class CMember extends Member{
   private List<Shop> myFavShops;
 
   @OneToMany
+  //@JoinTable(name = "bookingOfShops")
   @JsonIgnoreProperties(value = "liked")
   private List<Booking> myBookings;
 

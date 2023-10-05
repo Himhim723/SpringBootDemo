@@ -38,8 +38,8 @@ import lombok.ToString;
 @Builder
 public class Shop implements Serializable{
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String name;
+  private String address;
   @OneToMany(cascade = CascadeType.ALL)
   private List<Food> menu;
 
@@ -50,7 +50,7 @@ public class Shop implements Serializable{
   private List<Booking> bookings;
 
   // Can also use ManyToMany to complete the task along with JoinTable
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "myFavShops")
   @JsonIgnoreProperties(value = {"type","password","username","email","creditCard","myFavShops","myBookings"})
   private List<CMember> liked;
 

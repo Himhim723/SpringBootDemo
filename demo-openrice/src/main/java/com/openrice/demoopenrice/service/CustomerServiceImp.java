@@ -77,7 +77,6 @@ public class CustomerServiceImp implements CustomerService{
     Shop shop = shopRepository.findById(shopName).orElseThrow(()->new IllegalAccessError("Shop not found"));
     CMember user = customerRepository.findById(username).orElseThrow(()-> new IllegalAccessError("User Not Found"));
     user.getMyFavShops().add(shop);
-    //shop.getLiked().add(user);
     customerRepository.save(user);
     return shop;
   }
