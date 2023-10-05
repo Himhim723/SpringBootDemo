@@ -28,6 +28,7 @@ public class Comment {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   private String time;
+  private String shopName;
   private String username;
   private String comment;
 

@@ -11,6 +11,7 @@ import com.openrice.demoopenrice.entity.CMember;
 import com.openrice.demoopenrice.entity.Shop;
 import com.openrice.demoopenrice.model.Booking;
 import com.openrice.demoopenrice.model.Comment;
+import com.openrice.demoopenrice.model.CustomerSignUp;
 import com.openrice.demoopenrice.service.Imp.CustomerService;
 
 @RestController
@@ -21,12 +22,12 @@ public class CMOperation implements CMController {
   private CustomerService customerService;
 
   @Override
-  public CMember signUp(CMember member) {
+  public CMember signUp(CustomerSignUp member) {
     return customerService.signUp(member);
   }
 
   @Override
-  public CMember adjustInfo(String username, CMember member) {
+  public CMember adjustInfo(String username, CustomerSignUp member) {
     return customerService.adjustInfo(username, member);
   }
 

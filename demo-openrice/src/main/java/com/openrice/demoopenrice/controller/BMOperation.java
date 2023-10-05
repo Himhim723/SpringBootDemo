@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openrice.demoopenrice.controller.imp.BMController;
 import com.openrice.demoopenrice.entity.BMember;
+import com.openrice.demoopenrice.entity.Member;
 import com.openrice.demoopenrice.entity.Shop;
 import com.openrice.demoopenrice.model.Comment;
 import com.openrice.demoopenrice.model.Food;
@@ -26,14 +27,8 @@ public class BMOperation implements BMController {
   BMemberRepository bMemberRepository;
 
   @Override
-  public BMember signUp(BMember member) {
+  public Member signUp(Member member) {
     return businessService.signUp(member);
-  }
-
-  // test
-  @GetMapping(value = "/getUser/{username}")
-  public BMember get(@PathVariable String username){
-    return bMemberRepository.findById(username).get();
   }
 
   @Override

@@ -39,7 +39,7 @@ public class Booking {
   private String bookingDate;
   private String bookingTime;
   @ManyToOne
-  @JsonIgnoreProperties(value = {"password","type","creditCard","myFavShops","myBookings"})
+  @JsonIgnoreProperties(value = {"member","creditCard","myFavShops","myBookings"})
   private CMember userName;
   private int numOfCustomer;
 

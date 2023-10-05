@@ -8,11 +8,14 @@ import com.openrice.demoopenrice.model.Booking;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,13 +25,18 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-//@Table(name = "Customer")
+@Table(name = "Customer")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@SuperBuilder
-public class CMember extends Member{
+@Builder
+public class CMember implements Serializable{
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @OneToOne(cascade = CascadeType.ALL)
+  private Member member;
   private String name;
   private String phone;
   private String email;

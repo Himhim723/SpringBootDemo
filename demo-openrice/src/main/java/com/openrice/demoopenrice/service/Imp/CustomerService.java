@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.openrice.demoopenrice.entity.CMember;
+import com.openrice.demoopenrice.entity.Member;
 import com.openrice.demoopenrice.entity.Shop;
 import com.openrice.demoopenrice.model.Booking;
 import com.openrice.demoopenrice.model.Comment;
+import com.openrice.demoopenrice.model.CustomerSignUp;
 
 public interface CustomerService {
-  CMember signUp( CMember member);
-  CMember adjustInfo(String username,CMember member);
+  CMember signUp(CustomerSignUp member);
+  CMember adjustInfo(String username,CustomerSignUp member);
   void deleteAccount(String username);
   void adjustPassword(String username, String password);
   List<Shop> findAllShops();

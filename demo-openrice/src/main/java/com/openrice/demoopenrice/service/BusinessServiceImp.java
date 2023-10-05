@@ -31,61 +31,65 @@ public class BusinessServiceImp implements BusinessService{
   private MemberRepository memberRepository;
 
   @Override //success
-  public BMember signUp(BMember member) {
+  public Member signUp(Member member) {
     if(memberRepository.findById(member.getUsername()).isEmpty()){
-      member.setType(1);
-      return businessRepository.save(member);
+      Member mUser = Member.builder().username(member.getUsername())
+                                               .password(member.getPassword())
+                                               .type(1).build();
+      BMember user = BMember.builder().member(mUser)
+                                      .build();
+      businessRepository.save(user);
+      return memberRepository.save(mUser);
     } else throw new IllegalAccessError();
   }
 
   @Override 
   public void deleteAccount(String username) {
-    businessRepository.deleteById(username);
+    BMember member = findByUserName(username);
+    businessRepository.deleteById(member.getId());
   }
 
   @Override 
   public void adjustPassword(String username, String password) {
-    BMember member = businessRepository.findById(username).orElseThrow(()->new IllegalAccessError("User Not Found"));
+    Member member = memberRepository.findById(username).orElseThrow(()->new IllegalAccessError("User Not Found"));
     member.setPassword(password);
-    businessRepository.save(member);
+    memberRepository.save(member);
   }
 
   @Override
   public BMember addShop(String username, Shop shop) {
-    BMember member = businessRepository.findById(username).orElseThrow();
+    BMember member = findByUserName(username);
     member.getMyShops().add(shop);
     return businessRepository.save(member);
   }
 
   @Override
   public List<Shop> findMyShops(String username) {
-    return businessRepository.findById(username).orElseThrow().getMyShops();
+    Member user = memberRepository.findById(username).orElseThrow(()->new IllegalAccessError("User Not Found"));
+    return businessRepository.findByMember(user).getMyShops();
   }
 
   @Override
   public Shop findMyShopByName(String username, String shopName) {
-    return businessRepository.findById(username).orElseThrow(()->new IllegalAccessError("User Not Found"))
-           .getMyShops().stream()
-                        .filter(e->shopName.equals(e.getName()))
-                        .findFirst().orElseThrow(()->new IllegalAccessError("Shop Not Found"));
+    return findByUserName(username).getMyShops().stream().filter(e->e.getName().equals(shopName))
+            .findFirst().orElseThrow(()->new IllegalAccessError("No such shop"));
   }
 
   @Override
   public List<Food> addFoodToShop(String username, String shopName, List<Food> foods) {
-    BMember user = businessRepository.findById(username).get();
-    Shop shop = user.getMyShops().stream().filter(e->e.getName().equals(shopName)).findAny().get();
+    Shop shop = findMyShopByName(username, shopName);
     for(Food food:foods)
     shop.getMenu().add(food);
     shopRepository.save(shop);
-    businessRepository.save(user);
+    //businessRepository.save(user);
     return shop.getMenu();
   }
 
   @Override
   public void deleteFoodFromShop(String username, String shopName, int foodId) {
-    findMyShopByName(username, shopName).getMenu().removeIf(e->e.getId()==foodId);
+    Shop shop = findMyShopByName(username, shopName);
+    shop.getMenu().removeIf(e->e.getId()==foodId);
     shopRepository.save(findMyShopByName(username, shopName));
-    businessRepository.save(businessRepository.findById(shopName).get());
   }
 
   @Override
@@ -95,7 +99,7 @@ public class BusinessServiceImp implements BusinessService{
       e.setPrice(price);
     });
     shopRepository.save(findMyShopByName(username, shopName));
-    businessRepository.save(businessRepository.findById(shopName).get());
+    //businessRepository.save(businessRepository.findById(shopName).get());
     return findMyShopByName(username, shopName).getMenu().stream().filter(e->e.getId()==foodId).findAny().get();
   }
 
@@ -105,5 +109,8 @@ public class BusinessServiceImp implements BusinessService{
   }
   
 
-
+  BMember findByUserName(String username){
+    Member user = memberRepository.findById(username).orElseThrow(()->new IllegalAccessError("User Not Found"));
+    return businessRepository.findByMember(user);
+  }
 }

@@ -15,12 +15,13 @@ import com.openrice.demoopenrice.entity.CMember;
 import com.openrice.demoopenrice.entity.Shop;
 import com.openrice.demoopenrice.model.Booking;
 import com.openrice.demoopenrice.model.Comment;
+import com.openrice.demoopenrice.model.CustomerSignUp;
 
 public interface CMController {
   @PostMapping(value = "/signUp")  //success
-  CMember signUp(@RequestBody CMember member);
+  CMember signUp(@RequestBody CustomerSignUp member);
   @PutMapping(value = "/home/setting/{username}")  //success
-  CMember adjustInfo(@PathVariable String username, @RequestBody CMember member);
+  CMember adjustInfo(@PathVariable String username, @RequestBody CustomerSignUp member);
   @DeleteMapping(value = "/home/setting/{username}") // success
   void deleteAccount(@PathVariable String username);
   @PatchMapping(value = "/home/setting/{username}") // success

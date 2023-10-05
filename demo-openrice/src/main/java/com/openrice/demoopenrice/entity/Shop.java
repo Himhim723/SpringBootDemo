@@ -51,7 +51,7 @@ public class Shop implements Serializable{
 
   // Can also use ManyToMany to complete the task along with JoinTable
   @ManyToMany(cascade = CascadeType.ALL, mappedBy = "myFavShops")
-  @JsonIgnoreProperties(value = {"type","password","username","email","creditCard","myFavShops","myBookings"})
+  @JsonIgnoreProperties(value = {"member","email","creditCard","myFavShops","myBookings"})
   private List<CMember> liked;
 
 }
